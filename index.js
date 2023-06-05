@@ -11,7 +11,8 @@ app.use(
         target: 'https://api.netlify.com/api/v1/sites',
         on: {
             proxyReq: (proxyReq, req, res) => {
-              /* handle proxyReq */
+                // add custom header to request
+                proxyReq.setHeader('Access-Control-Allow-Origin', '*');
             },
             proxyRes: (proxyRes, req, res) => {
                 proxyRes.headers['Access-Control-Allow-Origin'] = '*';
