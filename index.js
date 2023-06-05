@@ -3,14 +3,6 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 // Creating express server
 const app = express();
 
-const cors = require("cors");
-
-const corsOptions = {
-  origin: "http://localhost:5173",
-};
-
-app.use(cors(corsOptions));
-
 // Proxy Logic :  Proxy endpoints
 app.use(
     "/netlify",
