@@ -3,6 +3,13 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 // Creating express server
 const app = express();
 
+const cors = require("cors");
+
+const corsOptions = {
+  origin: "http://127.0.0.1:5173",
+};
+
+app.use(cors(corsOptions));
 
 // Proxy Logic :  Proxy endpoints
 app.use(
@@ -12,10 +19,10 @@ app.use(
         on: {
             proxyReq: (proxyReq, req, res) => {
                 // add custom header to request
-                proxyReq.setHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+                proxyReq.setHeader('Access-Control-Allow-Origin', 'http://127.0.0.1:5173');
             },
             proxyRes: (proxyRes, req, res) => {
-                proxyRes.headers['Access-Control-Allow-Origin'] = 'http://localhost:5173';
+                proxyRes.headers['Access-Control-Allow-Origin'] = 'http://127.0.0.1:5173';
             },
         },
         changeOrigin: true,
